@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: techtrends-prod
+  name: techtrends-staging
   namespace: argocd
 spec:
   destination:
@@ -10,8 +10,8 @@ spec:
   project: default
   source:
     path: project/helm
-    repoURL: "https://github.com/rajugeorge/udac-python.git"
+    repoURL: "https://github.com/rajugeorge/udac-python"
     targetRevision: HEAD
     helm:
       valueFiles:
-        - values-prod.yaml
+        - values-staging.yaml
