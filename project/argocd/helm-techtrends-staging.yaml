@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: techtrends-prod
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: "https://kubernetes.default.svc"
+  project: default
+  source:
+    path: project/helm
+    repoURL: "https://github.com/rajugeorge/udac-python.git"
+    targetRevision: HEAD
+    helm:
+      valueFiles:
+        - values-prod.yaml
