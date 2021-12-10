@@ -1,5 +1,5 @@
 name: TechTrends - Package with Docker
-# this is a comment with first with tags cool
+# this is a comment with first with
 on:
   push:
     branches: [main]
@@ -17,7 +17,7 @@ jobs:
         with:
           images: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_APP_NAME }}
           tags: |
-            type=semver,value=1.0.0
+            type=semver,pattern={{version}}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       - name: Set up Docker Buildx
