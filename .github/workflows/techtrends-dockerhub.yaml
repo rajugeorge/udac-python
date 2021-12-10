@@ -38,6 +38,6 @@ jobs:
           context: ./project
           file: ./project/Dockerfile
           platforms: linux/amd64
-          push: true
+          push: ${{ github.event_name != 'push tag' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
