@@ -2,6 +2,8 @@ name: TechTrends - Package with Docker
 # this is a comment with first with dd done
 on:
   push:
+    branches:
+      - "**"
     tags:
       - "v*.*.*"
 
