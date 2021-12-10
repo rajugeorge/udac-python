@@ -2,8 +2,6 @@ name: TechTrends - Package with Docker
 # this is a comment with first with dd done
 on:
   push:
-    branches:
-      - "**"
     tags:
       - "v*.*.*"
 
@@ -38,6 +36,6 @@ jobs:
           context: ./project
           file: ./project/Dockerfile
           platforms: linux/amd64
-          push: ${{ github.event_name != 'push tag' }}
+          push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
