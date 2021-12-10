@@ -14,7 +14,7 @@ def get_db_connection():
     count+=1
     return connection
 
-# Function to get a post using its ID
+# Function to get a post using its ID.
 def get_post(post_id):
     connection = get_db_connection()
     post = connection.execute('SELECT * FROM posts WHERE id = ?',
