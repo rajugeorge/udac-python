@@ -70,15 +70,28 @@ def create():
 
 @app.route('/healthz')
 def status():
-    response = app.response_class(
+    try:
+        connection = get_db_connection()
+        posts = connection.execute('SELECT COUNT() FROM posts').fetchone()[0]
+        connection.close()
+        response = app.response_class(
             response=json.dumps({"result":"OK - healthy"}),
             status=200,
             mimetype='application/json'
-    )
+        )
 
-    ## log line
-    app.logger.info('Status request successfull')
-    return response
+        ## log line
+        app.logger.info('Status request successfull')
+        return response
+    except:
+        response = app.response_class(
+            response=json.dumps({"Error":"unhealthy"}),
+            status=500,
+            mimetype='application/json'
+        )
+        ## log line
+        app.logger.info('Status request unsuccessfull')
+        return response
 
 @app.route('/metrics')
 def metrics():
