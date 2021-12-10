@@ -2,7 +2,6 @@ name: TechTrends - Package with Docker
 # this is a comment with first with dd done
 on:
   push:
-    branches: [main]
     tags:
       - "v*.*.*"
 
@@ -20,7 +19,6 @@ jobs:
           images: ${{ secrets.DOCKERHUB_USERNAME }}/${{ secrets.DOCKER_APP_NAME }}
           tags: |
             type=schedule
-            type=ref,event=pr
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
